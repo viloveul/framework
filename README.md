@@ -1,11 +1,9 @@
 # viloveul
 
-need php7
+require PHP 7
 
 ```batch
-$ git clone https://github.com/viloveul/framework.git
-$ cd viloveul
-$ composer install
-$ composer run bootstrap
-$ composer run genrsakey
+composer create-project viloveul\framework your-project-name
 ```
+
+all of viloveul component is on other repository https://github.com/zafex
