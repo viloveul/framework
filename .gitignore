@@ -1,0 +1,8 @@
+/vendor
+/public/uploads
+/composer.lock
+/config/main.php
+/config/private.pem
+/config/public.pem
+/bootstrap.php
+/.env

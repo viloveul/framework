@@ -1,0 +1,52 @@
+{
+    "name": "viloveul/framework",
+    "description": "Viloveul Framework.",
+    "type": "framework",
+    "license": "MIT",
+    "authors": [{
+        "name": "Fajrul Akbar Zuhdi",
+        "email": "fajrulaz@gmail.com"
+    }],
+    "keywords": ["framework", "api", "zafex", "viloveul", "fajrulaz"],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "viloveul/kernel": "v1.*",
+        "vlucas/phpdotenv": "2.5.*",
+        "vlucas/valitron": "1.4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "require-dev": {
+        "codeception/codeception": "2.5.*"
+    },
+    "scripts": {
+        "clearall": [
+            "rm -f config/main.php config/private.pem config/public.pem bootstrap.php"
+        ],
+        "bootstrap": [
+            "mkdir -p public/uploads",
+            "cp -n sample/config-main.php config/main.php",
+            "cp -n sample/bootstrap.php bootstrap.php",
+            "touch .env"
+        ],
+        "genrsakey": [
+            "openssl genrsa -out config/private.pem -aes256 4096",
+            "openssl rsa -pubout -in config/private.pem -out config/public.pem"
+        ],
+        "post-create-project-cmd": [
+            "mkdir -p public/uploads",
+            "cp -n sample/config-main.php config/main.php",
+            "cp -n sample/bootstrap.php bootstrap.php",
+            "touch .env",
+            "openssl genrsa -out config/private.pem -aes256 4096",
+            "openssl rsa -pubout -in config/private.pem -out config/public.pem"
+        ]
+    }
+}
