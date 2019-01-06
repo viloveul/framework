@@ -1,13 +1,13 @@
 {
     "name": "viloveul/framework",
     "description": "Viloveul Framework.",
-    "type": "framework",
+    "type": "project",
     "license": "MIT",
     "authors": [{
         "name": "Fajrul Akbar Zuhdi",
         "email": "fajrulaz@gmail.com"
     }],
-    "keywords": ["framework", "api", "zafex", "viloveul", "fajrulaz"],
+    "keywords": ["project", "api", "zafex", "viloveul", "fajrulaz"],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
