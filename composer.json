@@ -14,7 +14,16 @@
         "sort-packages": true
     },
     "require": {
-        "viloveul/kernel": "v1.*",
+        "viloveul/kernel": "v1.*|v1.x-dev",
+        "viloveul/auth": "v1.*|v1.x-dev",
+        "viloveul/cache": "v1.*|v1.x-dev",
+        "viloveul/container": "v1.*|v1.x-dev",
+        "viloveul/event": "v1.*|v1.x-dev",
+        "viloveul/http": "v1.*|v1.x-dev",
+        "viloveul/media": "v1.*|v1.x-dev",
+        "viloveul/router": "v1.*|v1.x-dev",
+        "viloveul/middleware": "v1.*|v1.x-dev",
+        "viloveul/support": "v1.*|v1.x-dev",
         "vlucas/phpdotenv": "2.5.*",
         "vlucas/valitron": "1.4.*"
     },
