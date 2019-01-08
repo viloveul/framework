@@ -20,7 +20,7 @@ $app = new Viloveul\Kernel\Application($container, $configs);
 /**
  * Load all routes
  */
-$app->prepare(function (Viloveul\Router\Contracts\Collection $router) {
+$app->uses(function (Viloveul\Router\Contracts\Collection $router) {
     foreach (glob(__DIR__ . '/routes/*.php') as $file) {
         require $file;
     }
@@ -29,7 +29,7 @@ $app->prepare(function (Viloveul\Router\Contracts\Collection $router) {
 /**
  * Load all middlewares
  */
-$app->prepare(function (Viloveul\Kernel\Contracts\Middleware $middleware) {
+$app->uses(function (Viloveul\Kernel\Contracts\Middleware $middleware) {
     foreach (glob(__DIR__ . '/hooks/*.php') as $file) {
         require $file;
     }

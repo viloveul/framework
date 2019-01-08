@@ -8,7 +8,7 @@ try {
 
     $app = require __DIR__ . '/../bootstrap.php';
 
-    $app->prepare(function (IServerRequest $request, IConfiguration $configs, IAuthentication $auth) {
+    $app->uses(function (IServerRequest $request, IConfiguration $configs, IAuthentication $auth) {
         [$name, $token] = sscanf($request->getServer('HTTP_AUTHORIZATION'), "%s %s");
         if ($configs->get('auth.name') === $name && !empty($token)) {
             $auth->setToken($token);
