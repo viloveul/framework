@@ -1,17 +1,24 @@
 {
     "name": "viloveul/framework",
-    "description": "Viloveul Framework.",
+    "description": "Viloveul framework.",
     "type": "project",
     "license": "MIT",
+    "keywords": ["zafex", "viloveul", "fajrulaz", "framework", "bundle", "project"],
+    "homepage": "http://www.viloveul.com",
+    "readme": "README.MD",
     "authors": [{
         "name": "Fajrul Akbar Zuhdi",
         "email": "fajrulaz@gmail.com"
     }],
-    "keywords": ["project", "api", "zafex", "viloveul", "fajrulaz"],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
     },
     "require": {
         "viloveul/kernel": "v1.*|v1.x-dev",
@@ -27,11 +34,6 @@
         "vlucas/phpdotenv": "2.5.*",
         "vlucas/valitron": "1.4.*"
     },
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/"
-        }
-    },
     "require-dev": {
         "codeception/codeception": "2.5.*"
     },
@@ -41,7 +43,7 @@
         ],
         "bootstrap": [
             "mkdir -p public/uploads",
-            "cp -n sample/config-main.php config/main.php",
+            "cp -n sample/config.php config/main.php",
             "cp -n sample/bootstrap.php bootstrap.php",
             "touch .env"
         ],
@@ -51,7 +53,7 @@
         ],
         "post-create-project-cmd": [
             "mkdir -p public/uploads",
-            "cp -n sample/config-main.php config/main.php",
+            "cp -n sample/config.php config/main.php",
             "cp -n sample/bootstrap.php bootstrap.php",
             "touch .env",
             "openssl genrsa -out config/private.pem -aes256 4096",

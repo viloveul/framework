@@ -1,8 +1,8 @@
 <?php
 
 use Viloveul\Auth\Contracts\Authentication as IAuthentication;
-use Viloveul\Kernel\Contracts\Configuration as IConfiguration;
 use Viloveul\Http\Contracts\ServerRequest as IServerRequest;
+use Viloveul\Kernel\Contracts\Configuration as IConfiguration;
 
 try {
 
