@@ -18,6 +18,10 @@ class HelloCommand extends Command implements Injector
 
     public function handle()
     {
-        $this->output->writeLn('Hello World');
+        $this->writeNormal('Hello World');
+        $this->writeError('Hello World');
+        $this->writeComment('Hello World');
+        $this->writeInfo('Hello World');
+        $this->writeQuestion('Hello World');
     }
 }
