@@ -4,7 +4,7 @@
 require PHP 7
 
 ```batch
-composer create-project viloveul/framework your-project-name
+composer create-project zafex/viloveul-framework your-project-name
 ```
 all of viloveul component inside https://github.com/viloveul
 
