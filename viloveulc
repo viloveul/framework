@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+$workdir = getcwd();
+
+if (!is_dir($workdir)) {
+    throw new ErrorException("Workdir does not exists.");
+}
+if (!is_readable($workdir)) {
+    throw new ErrorException("Workdir is not readable.");
+}
+
+define('VILOVEUL_WORKDIR', realpath($workdir));
+
+$app = require_once VILOVEUL_WORKDIR . '/bootstrap.php';
+
+$status = $app->console()->run();
+
+$app->terminate(false);
+
+exit($status);

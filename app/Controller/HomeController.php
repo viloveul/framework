@@ -5,7 +5,7 @@ namespace App\Controller;
 use Viloveul\Http\Contracts\Response;
 use Viloveul\Http\Contracts\ServerRequest;
 
-class AuthController
+class HomeController
 {
     /**
      * @var mixed

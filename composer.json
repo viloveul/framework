@@ -21,31 +21,27 @@
         }
     },
     "require": {
-        "viloveul/kernel": "v1.*|v1.x-dev",
-        "viloveul/auth": "v1.*|v1.x-dev",
-        "viloveul/cache": "v1.*|v1.x-dev",
-        "viloveul/container": "v1.*|v1.x-dev",
-        "viloveul/event": "v1.*|v1.x-dev",
-        "viloveul/http": "v1.*|v1.x-dev",
-        "viloveul/media": "v1.*|v1.x-dev",
-        "viloveul/router": "v1.*|v1.x-dev",
-        "viloveul/middleware": "v1.*|v1.x-dev",
-        "viloveul/support": "v1.*|v1.x-dev",
-        "vlucas/phpdotenv": "2.5.*",
-        "vlucas/valitron": "1.4.*"
+        "viloveul/auth": "1.0.*",
+        "viloveul/cache": "1.0.*",
+        "viloveul/config": "1.0.*",
+        "viloveul/console": "1.0.*",
+        "viloveul/container": "1.0.*",
+        "viloveul/event": "1.0.*",
+        "viloveul/http": "1.0.*",
+        "viloveul/kernel": "1.0.*",
+        "viloveul/media": "1.0.*",
+        "viloveul/middleware": "1.0.*",
+        "viloveul/pagination": "1.0.*",
+        "viloveul/router": "1.0.*",
+        "viloveul/support": "1.0.*",
+        "viloveul/validation": "1.0.*"
     },
     "require-dev": {
         "codeception/codeception": "2.5.*"
     },
     "scripts": {
-        "clearall": [
-            "rm -f config/main.php config/private.pem config/public.pem bootstrap.php"
-        ],
         "bootstrap": [
-            "mkdir -p public/uploads",
-            "cp -n sample/config.php config/main.php",
-            "cp -n sample/bootstrap.php bootstrap.php",
-            "touch .env"
+            "mkdir -p public/uploads"
         ],
         "genrsakey": [
             "openssl genrsa -out config/private.pem -aes256 4096",
@@ -53,9 +49,6 @@
         ],
         "post-create-project-cmd": [
             "mkdir -p public/uploads",
-            "cp -n sample/config.php config/main.php",
-            "cp -n sample/bootstrap.php bootstrap.php",
-            "touch .env",
             "openssl genrsa -out config/private.pem -aes256 4096",
             "openssl rsa -pubout -in config/private.pem -out config/public.pem"
         ]
