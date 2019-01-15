@@ -1,5 +1,5 @@
 {
-    "name": "viloveul/framework",
+    "name": "zafex/viloveul-framework",
     "description": "Viloveul framework.",
     "type": "project",
     "license": "MIT",
@@ -48,9 +48,8 @@
             "openssl rsa -pubout -in config/private.pem -out config/public.pem"
         ],
         "post-create-project-cmd": [
-            "mkdir -p public/uploads",
-            "openssl genrsa -out config/private.pem -aes256 4096",
-            "openssl rsa -pubout -in config/private.pem -out config/public.pem"
+            "@bootstrap",
+            "@genrsakey"
         ]
     }
 }
