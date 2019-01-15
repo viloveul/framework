@@ -1,19 +1,12 @@
 <?php
 
-use Viloveul\Auth\Contracts\Authentication as IAuthentication;
-use Viloveul\Http\Contracts\ServerRequest as IServerRequest;
-use Viloveul\Kernel\Contracts\Configuration as IConfiguration;
+error_reporting(-1);
+
+ini_set('display_errors', 'On');
 
 try {
 
     $app = require __DIR__ . '/../bootstrap.php';
-
-    $app->uses(function (IServerRequest $request, IConfiguration $configs, IAuthentication $auth) {
-        [$name, $token] = sscanf($request->getServer('HTTP_AUTHORIZATION'), "%s %s");
-        if ($configs->get('auth.name') === $name && !empty($token)) {
-            $auth->setToken($token);
-        }
-    });
 
     $app->serve();
 
