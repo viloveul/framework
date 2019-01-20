@@ -3,13 +3,13 @@
 namespace App\Command;
 
 use Viloveul\Console\Command;
-use Viloveul\Container\ContainerInjectorTrait;
-use Viloveul\Container\Contracts\Injector;
+use Viloveul\Container\ContainerAwareTrait;
+use Viloveul\Container\Contracts\ContainerAware;
 use Viloveul\Router\Contracts\Collection;
 
-class HelloCommand extends Command implements Injector
+class HelloCommand extends Command implements ContainerAware
 {
-    use ContainerInjectorTrait;
+    use ContainerAwareTrait;
 
     /**
      * @var string
