@@ -68,7 +68,7 @@ $configuration = new Viloveul\Config\Configuration([
 ]);
 
 // initialize application object with existing $container and $configs
-$app = new Viloveul\Kernel\Application($container, $configuration);
+$app = new App\Kernel($container, $configuration);
 
 /**
  * Register middleware
