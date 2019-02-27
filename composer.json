@@ -21,20 +21,20 @@
         }
     },
     "require": {
-        "viloveul/auth": "1.0.*",
-        "viloveul/cache": "1.0.*",
-        "viloveul/config": "1.0.*",
-        "viloveul/console": "1.0.*",
-        "viloveul/container": "1.0.*",
-        "viloveul/event": "1.0.*",
-        "viloveul/http": "1.0.*",
-        "viloveul/kernel": "1.0.*",
-        "viloveul/media": "1.0.*",
-        "viloveul/middleware": "1.0.*",
-        "viloveul/pagination": "1.0.*",
-        "viloveul/router": "1.0.*",
-        "viloveul/support": "1.0.*",
-        "viloveul/validation": "1.0.*"
+        "viloveul/auth": "1.0.*|v1.x-dev",
+        "viloveul/cache": "1.0.*|v1.x-dev",
+        "viloveul/config": "1.0.*|v1.x-dev",
+        "viloveul/console": "1.0.*|v1.x-dev",
+        "viloveul/container": "1.0.*|v1.x-dev",
+        "viloveul/event": "1.0.*|v1.x-dev",
+        "viloveul/http": "1.0.*|v1.x-dev",
+        "viloveul/media": "1.0.*|v1.x-dev",
+        "viloveul/middleware": "1.0.*|v1.x-dev",
+        "viloveul/pagination": "1.0.*|v1.x-dev",
+        "viloveul/router": "1.0.*|v1.x-dev",
+        "viloveul/support": "1.0.*|v1.x-dev",
+        "viloveul/validation": "1.0.*|v1.x-dev",
+        "illuminate/database": "v5.*"
     },
     "require-dev": {
         "codeception/codeception": "2.5.*"
