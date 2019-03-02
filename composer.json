@@ -1,6 +1,6 @@
 {
-    "name": "zafex/viloveul-framework",
-    "description": "Viloveul framework.",
+    "name": "viloveul-framework/skeleton",
+    "description": "Viloveul framework. Designed for API",
     "type": "project",
     "license": "MIT",
     "keywords": ["zafex", "viloveul", "fajrulaz", "framework", "bundle", "project"],
