@@ -17,7 +17,7 @@ $configuration = new Viloveul\Config\Configuration([
     /* root application */
     'root' => __DIR__,
     /* base pathinfo on url */
-    'basepath' => '/api/v1',
+    'basepath' => '/',
     /* uploader */
     'upload' => [
         /* target upload */
@@ -61,6 +61,9 @@ $configuration = new Viloveul\Config\Configuration([
         'host' => '127.0.0.1',
         /* CACHE PORT (REDIS) */
         'port' => 6379,
+    ],
+    'transports' => [
+        'default' => 'amqp://localhost:5672//'
     ],
     'commands' => [
         App\Command\HelloCommand::class,

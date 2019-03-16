@@ -4,7 +4,7 @@
 require PHP 7
 
 ```batch
-composer create-project viloveul-framework/skeleton your-project-name
+composer create-project viloveul-project/framework your-project-name
 ```
 all of viloveul component inside https://github.com/viloveul
 
@@ -22,3 +22,4 @@ all of viloveul component inside https://github.com/viloveul
 - https://github.com/viloveul/router
 - https://github.com/viloveul/support
 - https://github.com/viloveul/validation
+- https://github.com/viloveul/transport

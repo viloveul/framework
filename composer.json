@@ -1,5 +1,5 @@
 {
-    "name": "viloveul-framework/skeleton",
+    "name": "viloveul-project/framework",
     "description": "Viloveul framework. Designed for API",
     "type": "project",
     "license": "MIT",
@@ -21,6 +21,7 @@
         }
     },
     "require": {
+        "illuminate/database": "v5.*",
         "viloveul/auth": "1.0.*|v1.x-dev",
         "viloveul/cache": "1.0.*|v1.x-dev",
         "viloveul/config": "1.0.*|v1.x-dev",
@@ -33,8 +34,8 @@
         "viloveul/pagination": "1.0.*|v1.x-dev",
         "viloveul/router": "1.0.*|v1.x-dev",
         "viloveul/support": "1.0.*|v1.x-dev",
-        "viloveul/validation": "1.0.*|v1.x-dev",
-        "illuminate/database": "v5.*"
+        "viloveul/transport": "1.0.*|v1.x-dev",
+        "viloveul/validation": "1.0.*|v1.x-dev"
     },
     "require-dev": {
         "codeception/codeception": "2.5.*"
