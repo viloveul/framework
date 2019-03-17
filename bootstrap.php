@@ -62,6 +62,14 @@ $configuration = new Viloveul\Config\Configuration([
         /* CACHE PORT (REDIS) */
         'port' => 6379,
     ],
+    'smtpmail' => [
+        'host' => env('SMTP_HOST', 'your.server.com'),
+        'port' => env('SMTP_PORT', 465),
+        'name' => env('SMTP_NAME', 'Viloveul'),
+        'secure' => env('SMTP_SECURE', 'ssl'),
+        'username' => env('SMTP_USERNAME', 'your@server.com'),
+        'password' => env('SMTP_PASSWORD', 'yourP@sSw0rd.'),
+    ],
     'transports' => [
         'default' => 'amqp://localhost:5672//'
     ],
