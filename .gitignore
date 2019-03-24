@@ -1,5 +1,5 @@
 /vendor
-/public/uploads
+/public/uploads/*
 /composer.lock
-/config/private.pem
-/config/public.pem
+/var/private.pem
+/var/public.pem

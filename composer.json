@@ -46,8 +46,8 @@
             "mkdir -p public/uploads"
         ],
         "genrsakey": [
-            "openssl genrsa -out config/private.pem -aes256 4096",
-            "openssl rsa -pubout -in config/private.pem -out config/public.pem"
+            "openssl genrsa -out var/private.pem -aes256 4096",
+            "openssl rsa -pubout -in var/private.pem -out var/public.pem"
         ],
         "post-create-project-cmd": [
             "@bootstrap",
