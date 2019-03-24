@@ -1,18 +1,16 @@
 #!/usr/bin/env php
 <?php
 
-$workdir = getcwd();
+$app = require_once __DIR__ . '/../bootstrap.php';
 
-if (!is_dir($workdir)) {
+defined('VILOVEUL_WORKDIR') or define('VILOVEUL_WORKDIR', getcwd());
+
+if (!is_dir(VILOVEUL_WORKDIR)) {
     throw new ErrorException("Workdir does not exists.");
 }
-if (!is_readable($workdir)) {
+if (!is_readable(VILOVEUL_WORKDIR)) {
     throw new ErrorException("Workdir is not readable.");
 }
-
-define('VILOVEUL_WORKDIR', realpath($workdir));
-
-$app = require_once VILOVEUL_WORKDIR . '/bootstrap.php';
 
 $status = $app->console()->run();
 

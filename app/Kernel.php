@@ -2,42 +2,41 @@
 
 namespace App;
 
-use App\Database;
 use Closure;
 use Exception;
-use PHPMailer\PHPMailer\PHPMailer;
-use Psr\Http\Message\UriInterface as IUri;
-use Viloveul\Auth\Authentication;
-use Viloveul\Auth\Contracts\Authentication as IAuthentication;
-use Viloveul\Cache\ApcuAdapter;
 use Viloveul\Cache\Cache;
-use Viloveul\Cache\Contracts\Cache as ICache;
-use Viloveul\Cache\RedisAdapter;
-use Viloveul\Config\Configuration;
-use Viloveul\Config\Contracts\Configuration as IConfiguration;
+use Viloveul\Router\Route;
+use Viloveul\Http\Response;
+use Viloveul\Transport\Bus;
+use Viloveul\Media\Uploader;
 use Viloveul\Console\Console;
-use Viloveul\Console\Contracts\Console as IConsole;
+use Viloveul\Middleware\Stack;
+use Viloveul\Cache\ApcuAdapter;
+use Viloveul\Cache\RedisAdapter;
+use Viloveul\Auth\Authentication;
+use PHPMailer\PHPMailer\PHPMailer;
+use Viloveul\Config\Configuration;
+use Viloveul\Router\NotFoundException;
 use Viloveul\Container\ContainerFactory;
-use Viloveul\Container\Contracts\Container as IContainer;
-use Viloveul\Event\Contracts\Dispatcher as IEventDispatcher;
+use Psr\Http\Message\UriInterface as IUri;
+use Viloveul\Cache\Contracts\Cache as ICache;
+use Viloveul\Transport\Contracts\Bus as IBus;
 use Viloveul\Event\Dispatcher as EventDispatcher;
 use Viloveul\Http\Contracts\Response as IResponse;
-use Viloveul\Http\Contracts\ServerRequest as IServerRequest;
-use Viloveul\Http\Response;
-use Viloveul\Http\Server\RequestFactory as RequestFactory;
-use Viloveul\Media\Contracts\Uploader as IUploader;
-use Viloveul\Media\Uploader;
-use Viloveul\Middleware\Collection as MiddlewareCollection;
-use Viloveul\Middleware\Contracts\Collection as IMiddlewareCollection;
-use Viloveul\Middleware\Stack;
 use Viloveul\Router\Collection as RouteCollection;
+use Viloveul\Router\Dispatcher as RouteDispatcher;
+use Viloveul\Console\Contracts\Console as IConsole;
+use Viloveul\Media\Contracts\Uploader as IUploader;
+use Viloveul\Container\Contracts\Container as IContainer;
+use Viloveul\Http\Server\RequestFactory as RequestFactory;
+use Viloveul\Middleware\Collection as MiddlewareCollection;
+use Viloveul\Event\Contracts\Dispatcher as IEventDispatcher;
+use Viloveul\Http\Contracts\ServerRequest as IServerRequest;
 use Viloveul\Router\Contracts\Collection as IRouteCollection;
 use Viloveul\Router\Contracts\Dispatcher as IRouteDispatcher;
-use Viloveul\Router\Dispatcher as RouteDispatcher;
-use Viloveul\Router\NotFoundException;
-use Viloveul\Router\Route;
-use Viloveul\Transport\Bus;
-use Viloveul\Transport\Contracts\Bus as IBus;
+use Viloveul\Auth\Contracts\Authentication as IAuthentication;
+use Viloveul\Config\Contracts\Configuration as IConfiguration;
+use Viloveul\Middleware\Contracts\Collection as IMiddlewareCollection;
 
 class Kernel
 {
@@ -56,7 +55,7 @@ class Kernel
         $this->container = $container ?: ContainerFactory::instance();
 
         $this->container->set(IConfiguration::class, function () use ($config) {
-            return $config === null ? new Configuration : $config;
+            return null === $config ? new Configuration() : $config;
         });
 
         $this->container->set(IRouteCollection::class, RouteCollection::class);
@@ -69,7 +68,7 @@ class Kernel
             $adapter = array_get($config->all(), 'cache.adapter') ?: 'apcu';
             $lifetime = array_get($config->all(), 'cache.lifetime') ?: 3600;
             $prefix = array_get($config->all(), 'cache.prefix') ?: 'viloveul';
-            if ($adapter === 'redis') {
+            if ('redis' === $adapter) {
                 $host = array_get($config->all(), 'cache.host') ?: '127.0.0.1';
                 $port = array_get($config->all(), 'cache.port') ?: 6379;
                 $pass = array_get($config->all(), 'cache.pass') ?: null;
@@ -79,20 +78,23 @@ class Kernel
             }
             $cache->setDefaultLifeTime($lifetime);
             $cache->setPrefix($prefix);
+
             return new Cache($cache);
         });
 
         $this->container->set(IRouteDispatcher::class, function (IConfiguration $config, IRouteCollection $routes) {
             $router = new RouteDispatcher($routes);
             $router->setBase($config->get('basepath') ?: '/');
+
             return $router;
         });
 
         $this->container->set(Database::class, function (IConfiguration $config) {
             $capsule = new Database();
             foreach ($config->get('db') ?: [] as $key => $value) {
-                $capsule->addConnection($value, $key === 'default' ? 'viloveul' : $key);
+                $capsule->addConnection($value, 'default' === $key ? 'viloveul' : $key);
             }
+
             return $capsule;
         });
 
@@ -101,6 +103,7 @@ class Kernel
             foreach ($config->get('transports') ?: [] as $key => $value) {
                 $bus->setConnection($value, $key);
             }
+
             return $bus;
         });
 
@@ -121,6 +124,7 @@ class Kernel
             );
             $auth->setPrivateKey(array_get($config->all(), 'auth.private'));
             $auth->setPublicKey(array_get($config->all(), 'auth.public'));
+
             return $auth;
         });
 
@@ -144,6 +148,7 @@ class Kernel
                 array_get($config->all(), 'smtpmail.username'),
                 array_get($config->all(), 'smtpmail.name')
             );
+
             return $mailer;
         });
     }
@@ -156,6 +161,7 @@ class Kernel
         $this->container->get(Database::class)->load();
         $console = $this->container->get(IConsole::class);
         $console->boot();
+
         return $console;
     }
 
@@ -227,7 +233,7 @@ class Kernel
         try {
             $db = $this->container->get(Database::class);
             foreach ($this->container->get(IConfiguration::class)->get('db') ?: [] as $key => $value) {
-                $db->getConnection($key === 'default' ? 'viloveul' : $key)->disconnect();
+                $db->getConnection('default' === $key ? 'viloveul' : $key)->disconnect();
             }
         } catch (Exception $e) {
             // keep silent
@@ -238,8 +244,7 @@ class Kernel
     }
 
     /**
-     * @param  Closure $handler
-     * @return mixed
+     * @param Closure $handler
      */
     public function uses(Closure $handler): void
     {

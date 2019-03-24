@@ -1,25 +1,55 @@
-
 # Viloveul Framework
 
-require PHP 7
+## 1. KEBUTUHAN
+- PHP7 (direkomendasikan 7.3)
+- Composer
+- OpenSSL
+- ext: php-amqp (Optional)
+- ext: php-redis (Optional)
+- ext: php-apcu (Optional)
 
-```batch
-composer create-project viloveul-project/framework your-project-name
+## 2. INSTALASI
+Instalasi menggunakan composer :
+```shell
+composer create-project viloveul-project/framework direktori-project-anda
+cd direktori-project-anda
 ```
-all of viloveul component inside https://github.com/viloveul
+Instalasi dengan git clone :
+```shell
+git clone https://github.com/zafex/viloveul-project-framework.git direktori-project-anda
+cd direktori-project-anda
+composer install
+composer run bootstrap
+composer run genrsakey
+```
+Check command :
+```shell
+sbin/viloveulc
+```
 
-## Components
-- https://github.com/viloveul/auth
-- https://github.com/viloveul/cache
-- https://github.com/viloveul/config
-- https://github.com/viloveul/console
-- https://github.com/viloveul/container
-- https://github.com/viloveul/event
-- https://github.com/viloveul/http
-- https://github.com/viloveul/media
-- https://github.com/viloveul/middleware
-- https://github.com/viloveul/pagination
-- https://github.com/viloveul/router
-- https://github.com/viloveul/support
-- https://github.com/viloveul/validation
-- https://github.com/viloveul/transport
+Run development server with php built-in server
+```shell
+php -S localhost:8080 -t public
+```
+
+## 3. NGINX
+```conf
+server {
+    listen 8080;
+    root /DIREKTORI-PROJECT-ANDA/public;
+    index index.php;
+    if (!-e $request_filename) {
+        rewrite ^.*$ /index.php last;
+    }
+    location ~ \.php$ {
+        fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PHP_VALUE "error_log=/var/log/nginx/api.log";
+        fastcgi_buffers 16 16k;
+        fastcgi_buffer_size 32k;
+        fastcgi_read_timeout 300;
+        include fastcgi_params;
+    }
+}
+```
