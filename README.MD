@@ -19,6 +19,7 @@ Instalasi dengan git clone :
 git clone https://github.com/zafex/viloveul-project-framework.git direktori-project-anda
 cd direktori-project-anda
 composer install
+composer run fresh
 composer run bootstrap
 composer run genrsakey
 ```

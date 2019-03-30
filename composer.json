@@ -42,14 +42,19 @@
         "codeception/codeception": "2.5.*"
     },
     "scripts": {
+        "fresh": [
+            "rm -f var/private.pem var/public.pem"
+        ],
         "bootstrap": [
-            "mkdir -p public/uploads"
+            "mkdir -p public/uploads",
+            "cp -n config/envi.env .env"
         ],
         "genrsakey": [
             "openssl genrsa -out var/private.pem -aes256 4096",
             "openssl rsa -pubout -in var/private.pem -out var/public.pem"
         ],
         "post-create-project-cmd": [
+            "@fresh",
             "@bootstrap",
             "@genrsakey"
         ]
