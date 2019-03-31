@@ -91,19 +91,13 @@ class Kernel
 
         $this->container->set(Database::class, function (IConfiguration $config) {
             $capsule = new Database();
-            foreach ($config->get('db') ?: [] as $key => $value) {
-                $capsule->addConnection($value, 'default' === $key ? 'viloveul' : $key);
-            }
-
+            $capsule->addConnection($config->get('db') ?: [], 'default');
             return $capsule;
         });
 
         $this->container->set(IBus::class, function (IConfiguration $config) {
             $bus = new Bus();
-            foreach ($config->get('transports') ?: [] as $key => $value) {
-                $bus->setConnection($value, $key);
-            }
-
+            $bus->setConnection($config->get('transport') ?: [], 'default');
             return $bus;
         });
 

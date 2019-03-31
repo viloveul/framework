@@ -23,6 +23,7 @@
     "require": {
         "illuminate/database": "v5.*",
         "phpmailer/phpmailer": "^6.0",
+        "ramsey/uuid": "^3.8",
         "viloveul/auth": "1.0.*|v1.x-dev",
         "viloveul/cache": "1.0.*|v1.x-dev",
         "viloveul/config": "1.0.*|v1.x-dev",
@@ -46,7 +47,8 @@
             "rm -f var/private.pem var/public.pem"
         ],
         "bootstrap": [
-            "mkdir -p public/uploads"
+            "mkdir -p public/uploads",
+            "cp -n config/envi.env .env"
         ],
         "genrsakey": [
             "openssl genrsa -out var/private.pem -aes256 4096",
@@ -54,8 +56,7 @@
         ],
         "post-create-project-cmd": [
             "@fresh",
-            "@bootstrap",
-            "@genrsakey"
+            "@bootstrap"
         ]
     }
 }
