@@ -46,8 +46,7 @@
             "rm -f var/private.pem var/public.pem"
         ],
         "bootstrap": [
-            "mkdir -p public/uploads",
-            "cp -n config/envi.env .env"
+            "mkdir -p public/uploads"
         ],
         "genrsakey": [
             "openssl genrsa -out var/private.pem -aes256 4096",
