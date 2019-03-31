@@ -97,7 +97,8 @@ class Kernel
 
         $this->container->set(IBus::class, function (IConfiguration $config) {
             $bus = new Bus();
-            $bus->setConnection($config->get('transport') ?: [], 'default');
+            $bus->initialize();
+            $bus->addConnection($config->get('transport') ?: [], 'default');
             return $bus;
         });
 
