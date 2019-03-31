@@ -9,10 +9,15 @@ class Model extends Eloquent
     /**
      * @var mixed
      */
+    public $incrementing = false;
+
+    /**
+     * @var mixed
+     */
     public $timestamps = false;
 
     /**
      * @var string
      */
-    protected $connection = 'viloveul';
+    protected $connection = 'default';
 }

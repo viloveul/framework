@@ -5,7 +5,6 @@ namespace App\Command;
 use Viloveul\Console\Command;
 use Viloveul\Container\ContainerAwareTrait;
 use Viloveul\Container\Contracts\ContainerAware;
-use Viloveul\Router\Contracts\Collection;
 
 class HelloCommand extends Command implements ContainerAware
 {
