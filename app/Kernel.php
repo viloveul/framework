@@ -227,9 +227,7 @@ class Kernel
     {
         try {
             $db = $this->container->get(Database::class);
-            foreach ($this->container->get(IConfiguration::class)->get('db') ?: [] as $key => $value) {
-                $db->getConnection('default' === $key ? 'viloveul' : $key)->disconnect();
-            }
+            $db->getConnection('default')->disconnect();
         } catch (Exception $e) {
             // keep silent
         }

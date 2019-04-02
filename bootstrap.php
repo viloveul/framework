@@ -2,6 +2,9 @@
 
 define('VILOVEUL_WORKDIR', __DIR__);
 
+// clear all timezone setting to UTC
+date_default_timezone_set('UTC');
+
 // require composer autoloader
 require_once __DIR__ . '/vendor/autoload.php';
 
