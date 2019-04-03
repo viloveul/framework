@@ -92,23 +92,23 @@ class Kernel
 
         $this->container->set(IAuthentication::class, function (IConfiguration $config, IServerRequest $request) {
             $auth = new Authentication(
-                array_get($config->all(), 'auth.phrase'),
+                $config->get('auth.phrase'),
                 $request->getServer('HTTP_HOST')
             );
-            $auth->setPrivateKey(array_get($config->all(), 'auth.private'));
-            $auth->setPublicKey(array_get($config->all(), 'auth.public'));
+            $auth->setPrivateKey($config->get('auth.private'));
+            $auth->setPublicKey($config->get('auth.public'));
 
             return $auth;
         });
 
         $this->container->set(ICache::class, function (IConfiguration $config) {
-            $adapter = array_get($config->all(), 'cache.adapter') ?: 'apcu';
-            $lifetime = array_get($config->all(), 'cache.lifetime') ?: 3600;
-            $prefix = array_get($config->all(), 'cache.prefix') ?: 'viloveul';
+            $adapter = $config->get('cache.adapter') ?: 'apcu';
+            $lifetime = $config->get('cache.lifetime') ?: 3600;
+            $prefix = $config->get('cache.prefix') ?: 'viloveul';
             if ('redis' === $adapter) {
-                $host = array_get($config->all(), 'cache.host') ?: '127.0.0.1';
-                $port = array_get($config->all(), 'cache.port') ?: 6379;
-                $pass = array_get($config->all(), 'cache.pass') ?: null;
+                $host = $config->get('cache.host') ?: '127.0.0.1';
+                $port = $config->get('cache.port') ?: 6379;
+                $pass = $config->get('cache.pass') ?: null;
                 $cache = new RedisAdapter($host, $port, $pass);
             } else {
                 $cache = new ApcuAdapter();
@@ -123,14 +123,14 @@ class Kernel
             $mailer->isSMTP();
             $mailer->isHTML(true);
             $mailer->SMTPAuth = true;
-            $mailer->SMTPSecure = array_get($config->all(), 'smtpmail.secure');
-            $mailer->Host = array_get($config->all(), 'smtpmail.host');
-            $mailer->Username = array_get($config->all(), 'smtpmail.username');
-            $mailer->Password = array_get($config->all(), 'smtpmail.password');
-            $mailer->Port = array_get($config->all(), 'smtpmail.port');
+            $mailer->SMTPSecure = $config->get('smtpmail.secure');
+            $mailer->Host = $config->get('smtpmail.host');
+            $mailer->Username = $config->get('smtpmail.username');
+            $mailer->Password = $config->get('smtpmail.password');
+            $mailer->Port = $config->get('smtpmail.port');
             $mailer->setFrom(
-                array_get($config->all(), 'smtpmail.username'),
-                array_get($config->all(), 'smtpmail.name')
+                $config->get('smtpmail.username'),
+                $config->get('smtpmail.name')
             );
             return $mailer;
         });
