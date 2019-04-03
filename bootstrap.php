@@ -15,7 +15,8 @@ $dotenv->load();
 $config = Viloveul\Config\ConfigFactory::load(__DIR__ . '/config/main.php');
 
 // initialize container with several components
-$container = Viloveul\Container\ContainerFactory::instance();
+$container = Viloveul\Container\ContainerFactory::instance([
+]);
 
 // initialize application object
 $app = new App\Kernel($container, $config);
