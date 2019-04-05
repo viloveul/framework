@@ -185,15 +185,14 @@ class Kernel
             $uri = $request->getUri();
             $router->dispatch($request->getMethod(), $uri->getPath());
             $route = $router->routed();
-            $this->middleware($route->getMiddlewares());
-            $controller = $this->makeController();
-            $middlewares = $this->container->get(IMiddlewareCollection::class);
-            if (count($middlewares->all()) > 0) {
-                $stack = new Stack($this->makeController(), $middlewares);
-                $response = $stack->handle($request);
-            } else {
-                $response = $controller();
-            }
+            $stack = new Stack(
+                $this->makeController(
+                    $route->getHandler(),
+                    $route->getParams()
+                ),
+                $this->container->get(IMiddlewareCollection::class)
+            );
+            $response = $stack->handle($request);
         } catch (NotFoundException $e404) {
             $response = $this->container->get(IResponse::class)->withErrors(
                 IResponse::STATUS_NOT_FOUND,
@@ -235,13 +234,9 @@ class Kernel
     /**
      * @return mixed
      */
-    protected function makeController()
+    protected function makeController($handler, $params)
     {
-        return function (IServerRequest $request) {
-            $route = $this->container->get(IRouteDispatcher::class)->routed();
-            $handler = $route->getHandler();
-            $params = $route->getParams();
-
+        return function (IServerRequest $request) use ($handler, $params) {
             if (is_callable($handler) && !is_scalar($handler)) {
                 if (is_array($handler) && !is_object($handler[0])) {
                     $result = $this->container->invoke([
