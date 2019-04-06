@@ -5,7 +5,6 @@ namespace App;
 use Closure;
 use Exception;
 use Viloveul\Cache\Cache;
-use Viloveul\Router\Route;
 use Viloveul\Http\Response;
 use Viloveul\Transport\Bus;
 use Viloveul\Media\Uploader;
@@ -79,6 +78,7 @@ class Kernel
 
         $this->container->set(Database::class, function (IConfiguration $config) {
             $capsule = new Database();
+            $capsule->initialize();
             $capsule->addConnection($config->get('db') ?: [], 'default');
             return $capsule;
         });
@@ -97,7 +97,6 @@ class Kernel
             );
             $auth->setPrivateKey($config->get('auth.private'));
             $auth->setPublicKey($config->get('auth.public'));
-
             return $auth;
         });
 
@@ -141,7 +140,6 @@ class Kernel
      */
     public function console(): IConsole
     {
-        $this->container->get(Database::class)->load();
         $console = $this->container->make(Console::class);
         $console->boot();
 
@@ -163,23 +161,11 @@ class Kernel
     }
 
     /**
-     * @param string   $name
-     * @param string   $pattern
-     * @param $param
-     */
-    public function route(string $name, string $pattern, $param = null): void
-    {
-        $route = new Route($pattern, $param);
-        $this->container->get(IRouteCollection::class)->add($name, $route);
-    }
-
-    /**
      * @return mixed
      */
     public function serve(): void
     {
         try {
-            $this->container->get(Database::class)->load();
             $request = $this->container->get(IServerRequest::class);
             $router = $this->container->get(IRouteDispatcher::class);
             $uri = $request->getUri();
@@ -246,15 +232,19 @@ class Kernel
                     $result = $this->container->invoke($handler, $params);
                 }
             } else {
-                if (is_scalar($handler)) {
-                    $parts = explode('::', $handler);
+                if (is_scalar($handler) && strpos($handler, '::') === false && is_callable($handler)) {
+                    $result = $this->container->invoke($handler, $params);
                 } else {
-                    $parts = (array) $handler;
+                    if (is_scalar($handler)) {
+                        $parts = explode('::', $handler);
+                    } else {
+                        $parts = (array) $handler;
+                    }
+                    $class = array_shift($parts);
+                    $action = isset($parts[0]) ? $parts[0] : 'handle';
+                    $object = is_string($class) ? $this->container->make($class) : $class;
+                    $result = $this->container->invoke([$object, $action], $params);
                 }
-                $class = array_shift($parts);
-                $action = isset($parts[0]) ? $parts[0] : 'handle';
-                $object = is_string($class) ? $this->container->make($class) : $class;
-                $result = $this->container->invoke([$object, $action], $params);
             }
             if ($result instanceof IResponse) {
                 return $result;
