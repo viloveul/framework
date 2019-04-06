@@ -18,10 +18,9 @@ class Kernel extends Application
     }
 
     /**
-     * @param bool $exit
-     * @param int  $status
+     * @param int $status
      */
-    public function terminate(bool $exit, int $status = 0): void
+    public function terminate(int $status = 0): void
     {
         try {
             $db = $this->container->get(Database::class);
@@ -29,6 +28,6 @@ class Kernel extends Application
         } catch (Exception $e) {
             // do nothing
         }
-        parent::terminate($exit, $status);
+        parent::terminate($status);
     }
 }
