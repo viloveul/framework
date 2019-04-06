@@ -9,7 +9,7 @@ class Database extends Capsule
     /**
      * @return mixed
      */
-    public function initialize()
+    public function load()
     {
         return $this->bootEloquent();
     }
