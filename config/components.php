@@ -10,7 +10,6 @@ return [
      */
     App\Database::class => function (Configuration $config) {
         $db = new App\Database();
-        $db->initialize();
         $db->addConnection($config->get('db') ?: [], 'default');
         return $db;
     },
