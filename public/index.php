@@ -4,17 +4,9 @@ error_reporting(0);
 
 ini_set('display_errors', 'Off');
 
+header('Access-Control-Allow-Origin: *');
+
 try {
-
-    header('Access-Control-Allow-Origin: *');
-
-    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-        header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, HEAD');
-        header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
-        header('Access-Control-Request-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
-        header('Access-Control-Request-Method: GET, POST, PUT, PATCH, DELETE, HEAD');
-        return true;
-    }
 
     $app = require __DIR__ . '/../bootstrap.php';
     $app->serve();
