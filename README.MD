@@ -1,6 +1,7 @@
-# Viloveul Framework
+<h1 align="center">Viloveul Framework</h1>
+<p align="center"><img src="viloveul.png"></p>
 
-## 1. KEBUTUHAN
+## 1. Requirement
 - PHP7 (direkomendasikan 7.3)
 - Composer
 - OpenSSL
@@ -8,7 +9,7 @@
 - ext: php-redis (Optional)
 - ext: php-apcu (Optional)
 
-## 2. INSTALASI
+## 2. Installation
 Instalasi menggunakan composer :
 ```shell
 composer create-project viloveul-project/framework direktori-project-anda
@@ -33,7 +34,7 @@ Run development server with php built-in server
 php -S localhost:8080 -t public
 ```
 
-## 3. NGINX
+## 3. Nginx
 ```conf
 server {
     listen 8080;
