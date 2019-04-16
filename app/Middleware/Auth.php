@@ -4,15 +4,11 @@ namespace App\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\MiddlewareInterface;
-use Viloveul\Container\ContainerAwareTrait;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Viloveul\Container\Contracts\ContainerAware;
 
-class Auth implements MiddlewareInterface, ContainerAware
+class Auth implements MiddlewareInterface
 {
-    use ContainerAwareTrait;
-
     /**
      * @param ServerRequestInterface  $request
      * @param RequestHandlerInterface $next

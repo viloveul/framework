@@ -24,9 +24,9 @@ composer run fresh
 composer run bootstrap
 composer run genrsakey
 ```
-Check command :
+Check hello command :
 ```shell
-sbin/viloveulc
+sbin/viloveulc hello
 ```
 
 Run development server with php built-in server
