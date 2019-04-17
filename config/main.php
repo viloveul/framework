@@ -24,13 +24,8 @@ return [
         # phrase
         'phrase' => env('VILOVEUL_AUTH_PASSPHRASE', 'viloveul'),
     ],
-    # db config (@see eloquent orm)
     'db' => [
-        // database driver
-        'driver' => env('VILOVEUL_DB_DRIVER', 'mysql'),
-        // database host
         'host' => env('VILOVEUL_DB_HOST', 'localhost'),
-        // database port
         'port' => env('VILOVEUL_DB_PORT', 3306),
         'database' => env('VILOVEUL_DB_NAME', 'viloveul_framework'),
         'username' => env('VILOVEUL_DB_USERNAME', 'viloveul'),
