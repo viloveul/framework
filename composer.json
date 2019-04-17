@@ -28,6 +28,8 @@
         "viloveul/console": "1.0.*|v1.x-dev",
         "viloveul/container": "1.0.*|v1.x-dev",
         "viloveul/event": "1.0.*|v1.x-dev",
+        "viloveul/database": "1.0.*|v1.x-dev",
+        "viloveul/mysql": "1.0.*|v1.x-dev",
         "viloveul/http": "1.0.*|v1.x-dev",
         "viloveul/media": "1.0.*|v1.x-dev",
         "viloveul/middleware": "1.0.*|v1.x-dev",
