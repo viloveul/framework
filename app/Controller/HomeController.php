@@ -33,7 +33,7 @@ class HomeController
     public function index(Response $response)
     {
         return $response->withPayload([
-            'Hello World',
+            'data' => 'Halo Dunia.',
         ]);
     }
 }

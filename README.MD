@@ -26,7 +26,7 @@ composer run genrsakey
 ```
 Check hello command :
 ```shell
-sbin/viloveulc hello
+sbin/viloveulc say:hello
 ```
 
 Run development server with php built-in server
