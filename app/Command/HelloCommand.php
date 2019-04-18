@@ -13,14 +13,14 @@ class HelloCommand extends Command implements ContainerAware
     /**
      * @var string
      */
-    protected static $defaultName = 'hello';
+    protected static $defaultName = 'say:hello';
 
     public function handle()
     {
-        $this->writeNormal('Hello World');
-        $this->writeError('Hello World');
-        $this->writeComment('Hello World');
-        $this->writeInfo('Hello World');
-        $this->writeQuestion('Hello World');
+        $this->writeNormal('Halo Dunia');
+        $this->writeError('Halo Dunia');
+        $this->writeComment('Halo Dunia');
+        $this->writeInfo('Halo Dunia');
+        $this->writeQuestion('Halo Dunia');
     }
 }
