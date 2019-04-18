@@ -11,17 +11,12 @@ return [
     Viloveul\Database\Contracts\Manager::class => function (Configuration $config) {
         $charset = $config->get('db.charset');
         $collation = $config->get('db.collation');
-        $default = [
-            'host=' . $config->get('db.host'),
-            'port=' . $config->get('db.port'),
-            'dbname=' . $config->get('db.database'),
-            'charset=' . $charset,
-            'collation=' . $collation,
-        ];
         $connection = new Viloveul\MySql\Connection(
-            implode(';', $default),
             $config->get('db.username'),
             $config->get('db.password'),
+            $config->get('db.database'),
+            $config->get('db.host'),
+            $config->get('db.port'),
             $config->get('db.prefix'),
             [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES '{$charset}' COLLATE '{$collation}'"]
         );
