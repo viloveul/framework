@@ -1,0 +1,71 @@
+#!/usr/bin/env node
+const fs = require('fs')
+const amqp = require('amqp')
+const nodemailer = require("nodemailer")
+const dotenv = require("dotenv")
+
+console.info('Load .env file ...')
+const myenvi = fs.readFileSync('.env')
+
+console.info('Parse .env file ...')
+const envi = dotenv.parse(myenvi)
+
+for (let envk in envi) {
+  if (envk.search(/^VILOVEUL_/) !== -1) {
+    process.env[envk] = envi[envk]
+  }
+}
+
+const dsn = process.env.VILOVEUL_BROKER_DSN === undefined ? 'amqp://localhost:5672/%2f' : process.env.VILOVEUL_BROKER_DSN
+
+console.info('connecting to broker message on ' + dsn)
+// rabbitmq connection
+const broker = amqp.createConnection({
+  url: dsn
+})
+
+console.info('Create nodemailer transport ...')
+
+const mailer = nodemailer.createTransport({
+  pool: true,
+  secure: true,
+  host: process.env.VILOVEUL_SMTP_HOST,
+  port: process.env.VILOVEUL_SMTP_PORT,
+  auth: {
+    user: process.env.VILOVEUL_SMTP_USERNAME,
+    pass: process.env.VILOVEUL_SMTP_PASSWORD
+  }
+});
+
+let initial = {
+  task: 'system.email',
+  data: {}
+}
+
+// handle when connection rabbitmq ready
+broker.on('ready', () => {
+  console.info('broker message connected')
+  broker.queue('viloveul.system.worker', {durable: true, autoDelete: false}, (queue) => {
+    queue.subscribe(async (message) => {
+      let res = Object.assign({}, initial, message)
+      if (res.task === 'system.email' && res.data.email !== undefined && res.data.subject !== undefined && res.data.body !== undefined) {
+        console.info('send email on viloveul.system.worker.')
+        let info = await mailer.sendMail({
+          from: process.env.VILOVEUL_SMTP_NAME + ' <' + process.env.VILOVEUL_SMTP_USERNAME + '>',
+          to: res.data.email,
+          subject: res.data.subject,
+          text: res.data.body,
+          html: res.data.html === undefined ? res.data.body : res.data.html
+        }).catch(e => {
+          console.error(e)
+        })
+        console.log("Message sent: %s", info.messageId)
+      }
+    })
+  })
+})
+
+// handle error
+broker.on('error', function(e) {
+  console.info("Error from amqp: ", e)
+})

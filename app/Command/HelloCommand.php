@@ -3,13 +3,9 @@
 namespace App\Command;
 
 use Viloveul\Console\Command;
-use Viloveul\Container\ContainerAwareTrait;
-use Viloveul\Container\Contracts\ContainerAware;
 
-class HelloCommand extends Command implements ContainerAware
+class HelloCommand extends Command
 {
-    use ContainerAwareTrait;
-
     /**
      * @var string
      */

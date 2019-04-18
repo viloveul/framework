@@ -24,34 +24,56 @@ composer run fresh
 composer run bootstrap
 composer run genrsakey
 ```
-Check hello command :
+
+## 3. PREVIEW
+
+### 3.1. Check Command
+
+hello command :
 ```shell
 sbin/viloveulc say:hello
 ```
+
+### 3.2. Check HTTP
 
 Run development server with php built-in server
 ```shell
 php -S localhost:8080 -t public
 ```
 
-## 3. Nginx
-```conf
-server {
-    listen 8080;
-    root /DIREKTORI-PROJECT-ANDA/public;
-    index index.php;
-    if (!-e $request_filename) {
-        rewrite ^.*$ /index.php last;
-    }
-    location ~ \.php$ {
-        fastcgi_pass unix:/run/php/php7.3-fpm.sock;
-        fastcgi_index index.php;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_param PHP_VALUE "error_log=/var/log/nginx/api.log";
-        fastcgi_buffers 16 16k;
-        fastcgi_buffer_size 32k;
-        fastcgi_read_timeout 300;
-        include fastcgi_params;
-    }
-}
+@see http://localhost:8080
+
+### 3.3 Check worker
+
+run rabbitmq-server under docker (broker message)
+```
+docker run --rm -p 5672:5672 rabbitmq:3
+```
+
+edit your .env file for email :
+```
+VILOVEUL_SMTP_HOST=
+VILOVEUL_SMTP_PORT=
+VILOVEUL_SMTP_NAME=
+VILOVEUL_SMTP_SECURE=
+VILOVEUL_SMTP_USERNAME=
+VILOVEUL_SMTP_PASSWORD=
+```
+
+install dependencies for worker
+```
+npm install
+```
+Go Action
+
+> Anda perlu menjalankan dalam 2 terminal/console untuk melihatnya:
+
+1: Jalankan worker
+```
+sbin/worker
+```
+
+2: Kirim data ke worker
+```
+sbin/viloveulc mail:test
 ```
