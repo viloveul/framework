@@ -1,0 +1,18 @@
+{
+  "name": "viloveul-project-framework",
+  "author": "Fajrul Akbar Zuhdi",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "worker": "node sbin/worker",
+    "devel": "nodemon sbin/worker"
+  },
+  "dependencies": {
+    "amqp": "^0.2.7",
+    "dotenv": "^6.2.0",
+    "nodemailer": "^6.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
