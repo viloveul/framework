@@ -1,8 +1,10 @@
 /.env
+/bundle.zip
 /composer.lock
 /package-lock.json
+/public/uploads/*
 /var/private.pem
 /var/public.pem
 /vendor
-/public/uploads/*
 /node_modules
+/.vscode
