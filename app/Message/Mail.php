@@ -8,11 +8,9 @@ class Mail extends Passenger
 {
     public function handle(): void
     {
-        $this->setAttribute('data', [
-            'email' => 'fajrulaz@gmail.com',
-            'subject' => 'Testing',
-            'body' => 'dor aja',
-        ]);
+        $this->setAttribute('email', 'fajrulaz@gmail.com');
+        $this->setAttribute('subject', 'Testing');
+        $this->setAttribute('body', 'Testing doang');
     }
 
     public function point(): string
