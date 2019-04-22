@@ -70,7 +70,7 @@ Go Action
 
 1: Jalankan worker
 ```
-sbin/worker
+sbin/workerc
 ```
 
 2: Kirim data ke worker
