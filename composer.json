@@ -39,6 +39,9 @@
         "viloveul/transport": "1.0.*|v1.x-dev",
         "viloveul/validation": "1.0.*|v1.x-dev"
     },
+    "suggest": {
+        "phpmailer/phpmailer": "require for email"
+    },
     "require-dev": {
         "codeception/codeception": "2.5.*"
     },

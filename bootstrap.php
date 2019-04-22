@@ -2,6 +2,8 @@
 
 define('VILOVEUL_WORKDIR', __DIR__);
 
+$_ENV['VILOVEUL_WORKDIR'] = VILOVEUL_WORKDIR;
+
 // clear all timezone setting to UTC
 date_default_timezone_set('UTC');
 
