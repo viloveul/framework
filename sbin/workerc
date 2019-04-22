@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 const fs = require('fs')
 const amqp = require('amqp')
-const nodemailer = require("nodemailer")
 const dotenv = require("dotenv")
+const nodemailer = require("nodemailer")
 
 console.info('Load .env file ...')
 const myenvi = fs.readFileSync('.env')
@@ -60,6 +60,17 @@ broker.on('ready', () => {
           console.error(e)
         })
         console.log("Message sent: %s", info.messageId)
+      } else {
+        try {
+          let fname = 'worker/' + res.task + '.js'
+          if (fs.existsSync(fname)) {
+            require('../' + fname).exec(res)
+          } else {
+            console.error('worker not found for task:' + res.task)
+          }
+        } catch (e) {
+          console.error(e)
+        }
       }
     })
   })

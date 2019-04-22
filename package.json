@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "worker": "node sbin/worker",
-    "devel": "nodemon sbin/worker"
+    "viloveul": "node sbin/workerc",
+    "viloveul-dev": "nodemon sbin/workerc"
   },
   "dependencies": {
     "amqp": "^0.2.7",
