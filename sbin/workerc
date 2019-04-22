@@ -2,7 +2,6 @@
 const fs = require('fs')
 const amqp = require('amqp')
 const dotenv = require("dotenv")
-const nodemailer = require("nodemailer")
 
 console.info('Load .env file ...')
 const myenvi = fs.readFileSync('.env')
@@ -24,22 +23,11 @@ const broker = amqp.createConnection({
   url: dsn
 })
 
-console.info('Create nodemailer transport ...')
-
-const mailer = nodemailer.createTransport({
-  pool: true,
-  secure: true,
-  host: process.env.VILOVEUL_SMTP_HOST,
-  port: process.env.VILOVEUL_SMTP_PORT,
-  auth: {
-    user: process.env.VILOVEUL_SMTP_USERNAME,
-    pass: process.env.VILOVEUL_SMTP_PASSWORD
-  }
-});
-
 let initial = {
-  task: 'system.email',
-  data: {}
+  id: 0,
+  task: 'system.message',
+  data: {},
+  args: []
 }
 
 // handle when connection rabbitmq ready
@@ -48,29 +36,15 @@ broker.on('ready', () => {
   broker.queue('viloveul.system.worker', {durable: true, autoDelete: false}, (queue) => {
     queue.subscribe(async (message) => {
       let res = Object.assign({}, initial, message)
-      if (res.task === 'system.email' && res.data.email !== undefined && res.data.subject !== undefined && res.data.body !== undefined) {
-        console.info('send email on viloveul.system.worker.')
-        let info = await mailer.sendMail({
-          from: process.env.VILOVEUL_SMTP_NAME + ' <' + process.env.VILOVEUL_SMTP_USERNAME + '>',
-          to: res.data.email,
-          subject: res.data.subject,
-          text: res.data.body,
-          html: res.data.html === undefined ? res.data.body : res.data.html
-        }).catch(e => {
-          console.error(e)
-        })
-        console.log("Message sent: %s", info.messageId)
-      } else {
-        try {
-          let fname = 'worker/' + res.task + '.js'
-          if (fs.existsSync(fname)) {
-            require('../' + fname).exec(res)
-          } else {
-            console.error('worker not found for task:' + res.task)
-          }
-        } catch (e) {
-          console.error(e)
+      try {
+        let fname = 'worker/' + res.task + '.js'
+        if (fs.existsSync(fname)) {
+          require('../' + fname).exec(res.data, res.args)
+        } else {
+          console.error('worker not found for task:' + res.task)
         }
+      } catch (e) {
+        console.error(e)
       }
     })
   })
