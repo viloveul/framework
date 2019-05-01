@@ -51,7 +51,7 @@
         ],
         "bootstrap": [
             "mkdir -p public/uploads",
-            "cp -n config/envi.env .env"
+            "cp -n profile/envi.env .env"
         ],
         "genrsakey": [
             "openssl genrsa -out var/private.pem -aes256 4096",

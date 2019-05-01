@@ -14,10 +14,10 @@ require_once __DIR__ . '/vendor/autoload.php';
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
-$config = Viloveul\Config\ConfigFactory::load(__DIR__ . '/config/main.php');
+$config = Viloveul\Config\ConfigFactory::load(__DIR__ . '/profile/config.php');
 
 // load components
-$components = require_once __DIR__ . '/config/components.php';
+$components = require_once __DIR__ . '/profile/common.php';
 
 // initialize container with several components
 $container = Viloveul\Container\ContainerFactory::instance($components);
