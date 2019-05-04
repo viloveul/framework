@@ -5,17 +5,18 @@ namespace App;
 use Exception;
 use App\Middleware\Auth;
 use Viloveul\Kernel\Application;
+use Viloveul\Log\Contracts\Logger;
 use Viloveul\Database\Contracts\Manager as Database;
 
 class Kernel extends Application
 {
     public function initialize()
     {
-        // load database manager
-        $this->uses(function (Database $db) {
+        $this->uses(function (Database $db, Logger $log) {
+            set_error_handler([$log, 'handleError']);
+            set_exception_handler([$log, 'handleException']);
             $db->load();
         });
-        // make middleware for authenticaion
         $this->middleware(Auth::class);
     }
 
