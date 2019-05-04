@@ -1,3 +1,4 @@
+
 <h1 align="center">Viloveul Framework</h1>
 <p align="center"><img src="viloveul.png"></p>
 
@@ -77,3 +78,47 @@ sbin/workerc
 ```
 sbin/viloveulc mail:test
 ```
+## Dependencies (No-Dev, Recursive)
+- enqueue/amqp-lib
+- enqueue/amqp-tools
+- enqueue/dsn
+- lcobucci/jwt
+- paragonie/random_compat
+- php-amqplib/php-amqplib
+- psr/container
+- psr/http-factory
+- psr/http-message
+- psr/http-server-handler
+- psr/http-server-middleware
+- psr/log
+- psr/simple-cache
+- queue-interop/amqp-interop
+- queue-interop/queue-interop
+- ramsey/uuid
+- symfony/console
+- symfony/contracts
+- symfony/polyfill-ctype
+- symfony/polyfill-mbstring
+- symfony/polyfill-php72
+- symfony/var-dumper
+- viloveul/auth
+- viloveul/cache
+- viloveul/config
+- viloveul/console
+- viloveul/container
+- viloveul/database
+- viloveul/event
+- viloveul/http
+- viloveul/kernel
+- viloveul/log
+- viloveul/media
+- viloveul/middleware
+- viloveul/mysql
+- viloveul/pagination
+- viloveul/router
+- viloveul/support
+- viloveul/transport
+- viloveul/validation
+- vlucas/phpdotenv
+- vlucas/valitron
+- zendframework/zend-diactoros
