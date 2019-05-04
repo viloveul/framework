@@ -26,7 +26,9 @@ class Kernel extends Application
     {
         try {
             $this->uses(function (Database $db) {
-                $db->getConnection()->disconnect();
+                foreach ($db->all() as $connection) {
+                    $connection->isConnected() and $connection->disconnect();
+                }
             });
         } catch (Exception $e) {
             // do nothing
