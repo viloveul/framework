@@ -21,6 +21,8 @@
         }
     },
     "require": {
+        "viloveul/database": "1.0.*|v1.x-dev",
+        "viloveul/mysql": "1.0.*|v1.x-dev",
         "viloveul/kernel": "1.0.*|v1.x-dev",
         "viloveul/auth": "1.0.*|v1.x-dev",
         "viloveul/cache": "1.0.*|v1.x-dev",
@@ -28,8 +30,6 @@
         "viloveul/console": "1.0.*|v1.x-dev",
         "viloveul/container": "1.0.*|v1.x-dev",
         "viloveul/event": "1.0.*|v1.x-dev",
-        "viloveul/database": "1.0.*|v1.x-dev",
-        "viloveul/mysql": "1.0.*|v1.x-dev",
         "viloveul/http": "1.0.*|v1.x-dev",
         "viloveul/media": "1.0.*|v1.x-dev",
         "viloveul/middleware": "1.0.*|v1.x-dev",
@@ -37,6 +37,7 @@
         "viloveul/router": "1.0.*|v1.x-dev",
         "viloveul/support": "1.0.*|v1.x-dev",
         "viloveul/transport": "1.0.*|v1.x-dev",
+        "viloveul/log": "1.0.*|v1.x-dev",
         "viloveul/validation": "1.0.*|v1.x-dev"
     },
     "suggest": {
