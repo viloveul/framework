@@ -13,6 +13,7 @@ return [
     'upload' => [
         # target upload
         'target' => dirname(__DIR__) . '/public/uploads',
+        'baseurl' => env('VILOVEUL_BASEURL') . '/uploads',
     ],
     'auth' => [
         # token name on header for jwt

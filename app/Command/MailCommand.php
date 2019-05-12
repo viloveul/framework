@@ -13,9 +13,12 @@ class MailCommand extends Command implements ContainerAware
     use ContainerAwareTrait;
 
     /**
-     * @var string
+     * @param string $name
      */
-    protected static $defaultName = 'mail:test';
+    public function __construct(string $name = 'mail:test')
+    {
+        parent::__construct($name);
+    }
 
     public function handle()
     {

@@ -7,9 +7,12 @@ use Viloveul\Console\Command;
 class HelloCommand extends Command
 {
     /**
-     * @var string
+     * @param string $name
      */
-    protected static $defaultName = 'say:hello';
+    public function __construct(string $name = 'say:hello')
+    {
+        parent::__construct($name);
+    }
 
     public function handle()
     {
