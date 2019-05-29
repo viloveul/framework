@@ -58,8 +58,4 @@ return [
         'password' => env('VILOVEUL_SMTP_PASSWORD', 'yourP@sSw0rd.'),
     ],
     'transport' => env('VILOVEUL_BROKER_DSN', 'amqp://localhost:5672/%2f'),
-    'commands' => [
-        App\Command\HelloCommand::class,
-        App\Command\MailCommand::class,
-    ],
 ];

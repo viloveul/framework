@@ -12,14 +12,6 @@ class MailCommand extends Command implements ContainerAware
 {
     use ContainerAwareTrait;
 
-    /**
-     * @param string $name
-     */
-    public function __construct(string $name = 'mail:test')
-    {
-        parent::__construct($name);
-    }
-
     public function handle()
     {
         $this->getContainer()->get(IBus::class)->process(new Mail());

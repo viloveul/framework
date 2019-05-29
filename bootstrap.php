@@ -1,5 +1,7 @@
 <?php
 
+define('VILOVEUL_START', microtime(true));
+
 define('VILOVEUL_WORKDIR', __DIR__);
 
 $_ENV['VILOVEUL_WORKDIR'] = VILOVEUL_WORKDIR;
@@ -14,10 +16,16 @@ require_once __DIR__ . '/vendor/autoload.php';
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
-$config = Viloveul\Config\ConfigFactory::load(__DIR__ . '/profile/config.php');
+$config = Viloveul\Config\ConfigFactory::load(__DIR__ . '/config/common.php');
+
+// load commands
+$commands = require_once __DIR__ . '/config/command.php';
+
+// register commands
+$config->set('commands', $commands, true);
 
 // load components
-$components = require_once __DIR__ . '/profile/common.php';
+$components = require_once __DIR__ . '/config/component.php';
 
 // initialize container with several components
 $container = Viloveul\Container\ContainerFactory::instance($components);
@@ -35,7 +43,7 @@ $app->uses(function (Viloveul\Router\Contracts\Collection $router) {
 });
 
 /**
- * Load all routes
+ * Load all hooks
  */
 $app->uses(function (Viloveul\Event\Contracts\Dispatcher $event) {
     foreach (glob(__DIR__ . '/hook/*.php') as $file) {
