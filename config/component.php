@@ -6,7 +6,7 @@ use Viloveul\Config\Contracts\Configuration;
 return [
     /*
     | REGISTER DATABASE
-    | @see config/main.php
+    | @see config/common.php
      */
     Viloveul\Database\Contracts\Manager::class => function (Configuration $config) {
         $charset = $config->get('db.charset');
@@ -34,7 +34,7 @@ return [
 
     /*
     | REGISTER UPLOADER
-    | @see config/main.php
+    | @see config/common.php
      */
     Viloveul\Media\Contracts\Uploader::class => function (Configuration $config, ServerRequest $request) {
         return new Viloveul\Media\Uploader($request, $config->get('upload'));
@@ -42,7 +42,7 @@ return [
 
     /*
     | REGISTER TRAPORTATION
-    | @see config/main.php
+    | @see config/common.php
      */
     Viloveul\Transport\Contracts\Bus::class => function (Configuration $config) {
         $bus = new Viloveul\Transport\Bus();
@@ -53,7 +53,7 @@ return [
 
     /*
     | REGISTER AUTH
-    | @see config/main.php
+    | @see config/common.php
      */
     Viloveul\Auth\Contracts\Authentication::class => function (Configuration $config, ServerRequest $request) {
         $auth = new Viloveul\Auth\Authentication(
@@ -67,7 +67,7 @@ return [
 
     /*
     | REGISTER CACHE
-    | @see config/main.php
+    | @see config/common.php
      */
     Viloveul\Cache\Contracts\Cache::class => function (Configuration $config) {
         $adapter = $config->get('cache.adapter') ?: 'apcu';
@@ -99,7 +99,7 @@ return [
 
     /*
     | REGISTER PHPMAILER
-    | @see config/main.php
+    | @see config/common.php
      */
     PHPMailer\PHPMailer\PHPMailer::class => function (Configuration $config) {
         $mailer = new PHPMailer\PHPMailer\PHPMailer(true);
