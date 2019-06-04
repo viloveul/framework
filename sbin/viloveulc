@@ -1,6 +1,9 @@
 #!/usr/bin/env php
 <?php
 
+use Viloveul\Log\Contracts\Logger;
+use Viloveul\Database\Contracts\Manager as Database;
+
 error_reporting(-1);
 
 ini_set('display_errors', 'On');
@@ -15,6 +18,15 @@ if (!is_dir(VILOVEUL_WORKDIR)) {
 if (!is_readable(VILOVEUL_WORKDIR)) {
     throw new ErrorException("Workdir is not readable.");
 }
+
+register_shutdown_function(function () use ($app) {
+    $app->uses(function (Database $db, Logger $log) {
+        foreach ($db->all() as $connection) {
+            $connection->isConnected() and $connection->disconnect();
+        }
+        $log->process();
+    });
+});
 
 $status = $app->console()->run();
 
