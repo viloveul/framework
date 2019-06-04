@@ -26,10 +26,11 @@ class Kernel extends Application
     public function terminate(int $status = 0): void
     {
         try {
-            $this->uses(function (Database $db) {
+            $this->uses(function (Database $db, Logger $log) {
                 foreach ($db->all() as $connection) {
                     $connection->isConnected() and $connection->disconnect();
                 }
+                $log->process();
             });
         } catch (Exception $e) {
             // do nothing
