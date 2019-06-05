@@ -3,9 +3,9 @@
 /composer.lock
 /package-lock.json
 /public/uploads/*
-/var/private.pem
-/var/public.pem
+/var/*
+/logs/*
 /vendor
-/var/logs
 /node_modules
 /.vscode
+/*.bak

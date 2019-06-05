@@ -48,9 +48,6 @@
         }
     },
     "scripts": {
-        "clearlogs": [
-            "@php -r \"foreach(glob('var/logs/*') as \\$f) unlink(\\$f);\""
-        ],
         "fresh": [
             "@php -r \"is_file('var/private.pem') && unlink('var/private.pem');\"",
             "@php -r \"is_file('var/public.pem') && unlink('var/public.pem');\""
