@@ -61,11 +61,9 @@
             "openssl rsa -pubout -in var/private.pem -out var/public.pem"
         ],
         "post-create-project-cmd": [
-            "@fresh",
             "@bootstrap"
         ],
         "post-install-cmd": [
-            "@fresh",
             "@bootstrap"
         ]
     }

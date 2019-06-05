@@ -16,12 +16,13 @@ require_once __DIR__ . '/vendor/autoload.php';
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
-$config = Viloveul\Config\ConfigFactory::load(__DIR__ . '/config/common.php');
-
 // load commands
 $commands = require_once __DIR__ . '/config/command.php';
 
-// register commands
+// initialize configuration
+$config = Viloveul\Config\ConfigFactory::load(__DIR__ . '/config/common.php');
+
+// register commands to configs
 $config->set('commands', $commands, true);
 
 // load components

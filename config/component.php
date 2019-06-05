@@ -92,7 +92,7 @@ return [
     Viloveul\Log\Contracts\Logger::class => function () {
         $logger = Viloveul\Log\LoggerFactory::instance();
         $logger->getCollection()->add(
-            new Viloveul\Log\Provider\FileProvider(dirname(__DIR__) . '/var')
+            new Viloveul\Log\Provider\FileProvider(dirname(__DIR__))
         );
         return $logger;
     },
