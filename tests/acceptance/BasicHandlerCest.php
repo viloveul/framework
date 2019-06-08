@@ -11,7 +11,7 @@ class BasicHandlerCest
     {
     	$I->sendGet('/');
     	$I->seeResponseCodeIs(200);
-    	$I->seeResponseContainsJson(['Hello World']);
+    	$I->seeResponseContainsJson(['data' => 'Halo Dunia.']);
     }
 
     public function tryHttpNotFoundTest(AcceptanceTester $I)

@@ -6,9 +6,9 @@
 
 actor: AcceptanceTester
 modules:
-    enabled:
-        - PhpBrowser:
-            url: http://localhost:5555/api/v1
-        - \Helper\Acceptance
-        - REST:
-            depends: PhpBrowser
+  enabled:
+    - Helper\Acceptance
+    - PhpBrowser:
+        url: http://localhost:19911/
+    - REST:
+        depends: PhpBrowser
