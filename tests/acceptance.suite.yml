@@ -9,6 +9,6 @@ modules:
   enabled:
     - Helper\Acceptance
     - PhpBrowser:
-        url: http://localhost:19911/
+        url: http://localhost:8080/
     - REST:
         depends: PhpBrowser
