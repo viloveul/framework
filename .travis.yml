@@ -18,7 +18,7 @@ install:
   - travis_retry composer install --prefer-dist --no-interaction
 
 before_script:
-  - "php -S localhost:19911 -t ./public &"
+  - "php -S 127.0.0.1:19911 -t ./public &"
   - sleep 3
 
 script:
