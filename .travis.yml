@@ -20,5 +20,5 @@ install:
   - travis_retry composer install --prefer-dist --no-interaction
 
 script:
-  - php -S localhost:19911 -t public
+  - php -S localhost:19911 -t public &
   - vendor/bin/codecept run
