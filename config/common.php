@@ -4,7 +4,7 @@ return [
     # application name
     'name' => 'VILOVEUL FRAMEWORK',
     # version
-    'version' => '1.0',
+    'version' => 'v1',
     # root application
     'root' => dirname(__DIR__),
     # base pathinfo on url
@@ -24,6 +24,8 @@ return [
         'public' => env('VILOVEUL_AUTH_PUBLIC_KEY', realpath(dirname(__DIR__) . '/var/public.pem')),
         # phrase
         'phrase' => env('VILOVEUL_AUTH_PASSPHRASE', 'viloveul'),
+        # lifetime active
+        'lifetime' => env('VILOVEUL_AUTH_LIFETIME', 3600),
     ],
     'db' => [
         'host' => env('VILOVEUL_DB_HOST', 'localhost'),
