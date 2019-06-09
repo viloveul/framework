@@ -1,6 +1,17 @@
-
 <h1 align="center">Viloveul Framework</h1>
 <p align="center"><img src="viloveul.png"></p>
+
+<p align="center">
+<a href="https://travis-ci.com/zafex/viloveul-project-framework">
+<img src="https://travis-ci.com/zafex/viloveul-project-framework.svg" alt="Build Status">
+</a>
+<a href="https://packagist.org/packages/viloveul-project/framework">
+<img src="https://poser.pugx.org/viloveul-project/framework/d/total.svg" alt="Total Downloads">
+</a>
+<a href="https://packagist.org/packages/viloveul-project/framework">
+<img src="https://poser.pugx.org/viloveul-project/framework/v/stable.svg" alt="Latest Stable Version">
+</a>
+</p>
 
 ## 1. Requirement
 - PHP7 (direkomendasikan 7.3)
