@@ -8,12 +8,12 @@ return [
     # root application
     'root' => dirname(__DIR__),
     # base pathinfo on url
-    'basepath' => '/',
+    'baseurl' => env('VILOVEUL_BASEURL', 'http://localhost'),
     # uploader
     'upload' => [
         # target upload
         'target' => dirname(__DIR__) . '/public/uploads',
-        'baseurl' => env('VILOVEUL_BASEURL') . '/uploads',
+        'baseurl' => env('VILOVEUL_BASEURL', 'http://localhost') . '/uploads',
     ],
     'auth' => [
         # token name on header for jwt
