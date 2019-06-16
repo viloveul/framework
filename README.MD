@@ -2,14 +2,14 @@
 <p align="center"><img src="viloveul.png"></p>
 
 <p align="center">
-<a href="https://travis-ci.com/zafex/viloveul-project-framework">
-<img src="https://travis-ci.com/zafex/viloveul-project-framework.svg" alt="Build Status">
+<a href="https://travis-ci.com/viloveul/project-framework">
+<img src="https://travis-ci.com/viloveul/project-framework.svg" alt="Build Status">
 </a>
-<a href="https://packagist.org/packages/viloveul-project/framework">
-<img src="https://poser.pugx.org/viloveul-project/framework/d/total.svg" alt="Total Downloads">
+<a href="https://packagist.org/packages/viloveul/project-framework">
+<img src="https://poser.pugx.org/viloveul/project-framework/d/total.svg" alt="Total Downloads">
 </a>
-<a href="https://packagist.org/packages/viloveul-project/framework">
-<img src="https://poser.pugx.org/viloveul-project/framework/v/stable.svg" alt="Latest Stable Version">
+<a href="https://packagist.org/packages/viloveul/project-framework">
+<img src="https://poser.pugx.org/viloveul/project-framework/v/stable.svg" alt="Latest Stable Version">
 </a>
 </p>
 
@@ -24,12 +24,12 @@
 ## 2. Installation
 Instalasi menggunakan composer :
 ```shell
-composer create-project viloveul-project/framework direktori-project-anda
+composer create-project viloveul/project-framework direktori-project-anda
 cd direktori-project-anda
 ```
 Instalasi dengan git clone :
 ```shell
-git clone https://github.com/zafex/viloveul-project-framework.git direktori-project-anda
+git clone https://github.com/viloveul/project-framework.git direktori-project-anda
 cd direktori-project-anda
 composer install
 composer run fresh
