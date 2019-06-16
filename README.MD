@@ -3,7 +3,7 @@
 
 <p align="center">
 <a href="https://travis-ci.com/viloveul/project-framework">
-<img src="https://travis-ci.com/viloveul/project-framework.svg" alt="Build Status">
+<img src="https://api.travis-ci.com/viloveul/project-framework.svg" alt="Build Status">
 </a>
 <a href="https://packagist.org/packages/viloveul/project-framework">
 <img src="https://poser.pugx.org/viloveul/project-framework/d/total" alt="Total Downloads">
