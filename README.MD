@@ -6,10 +6,10 @@
 <img src="https://travis-ci.com/viloveul/project-framework.svg" alt="Build Status">
 </a>
 <a href="https://packagist.org/packages/viloveul/project-framework">
-<img src="https://poser.pugx.org/viloveul/project-framework/d/total.svg" alt="Total Downloads">
+<img src="https://poser.pugx.org/viloveul/project-framework/d/total" alt="Total Downloads">
 </a>
 <a href="https://packagist.org/packages/viloveul/project-framework">
-<img src="https://poser.pugx.org/viloveul/project-framework/v/stable.svg" alt="Latest Stable Version">
+<img src="https://poser.pugx.org/viloveul/project-framework/v/stable" alt="Latest Stable Version">
 </a>
 </p>
 
