@@ -26,11 +26,21 @@ return [
     },
 
     /*
-    | REGISTER EVENT
+    | REGISTER EVENT DISPATCHER
      */
-    Viloveul\Event\Contracts\Dispatcher::class => [
-        'class' => Viloveul\Event\Dispatcher::class,
-    ],
+    Viloveul\Event\Contracts\Dispatcher::class => function(Viloveul\Event\Contracts\Provider $provider) {
+        return new Viloveul\Event\Dispatcher($provider);
+    },
+
+    /*
+    | REGISTER EVENT PROVIDER
+     */
+    Viloveul\Event\Contracts\Provider::class => Viloveul\Event\Provider::class,
+
+    /*
+    | REGISTER MUTATOR MANAGER
+     */
+    Viloveul\Mutator\Contracts\Manager::class => Viloveul\Mutator\Manager::class,
 
     /*
     | REGISTER UPLOADER
