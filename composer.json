@@ -27,6 +27,7 @@
         "viloveul/event": "1.*|v1.x-dev",
         "viloveul/http": "1.*|v1.x-dev",
         "viloveul/media": "1.*|v1.x-dev",
+        "viloveul/mutator": "1.*|v1.x-dev",
         "viloveul/middleware": "1.*|v1.x-dev",
         "viloveul/pagination": "1.*|v1.x-dev",
         "viloveul/router": "1.*|v1.x-dev",
