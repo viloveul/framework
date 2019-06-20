@@ -46,7 +46,7 @@ $app->uses(function (Viloveul\Router\Contracts\Collection $router) {
 /**
  * Load all hooks
  */
-$app->uses(function (Viloveul\Mutator\Contracts\Manager $mutator) {
+$app->uses(function (Viloveul\Mutator\Contracts\Context $mutator) {
     foreach (glob(__DIR__ . '/hook/*.php') as $file) {
         require $file;
     }
