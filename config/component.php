@@ -40,7 +40,7 @@ return [
     /*
     | REGISTER MUTATOR MANAGER
      */
-    Viloveul\Mutator\Contracts\Manager::class => Viloveul\Mutator\Manager::class,
+    Viloveul\Mutator\Contracts\Context::class => Viloveul\Mutator\Context::class,
 
     /*
     | REGISTER UPLOADER
